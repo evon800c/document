@@ -86,46 +86,48 @@ At this point ChirpStack write data coming from device into InfluxDB.
 
 At this point, my first challenge was understanding how to explore data in InfluxDB.
 
-first   - from the left column on icon "I" select the organization create before<br>
-second  - always from the left column on incon "arrow up", click on buckets and select create before
++ from the left column, switch to organization created before
 
-a data explorer interface are presented and here you are drive thru query creation.
- from left to right you can create parameter for query
- in my case: 
-	- from:		chirpstack
-	- filter:	device_name		-> and select device name create on LoRaWan console
-	- filter:	_measurement	-> device_frmpayload_data_bytes_air_temp_c - the name defined by matthias code (for air temp)
-	- filter:	_field			-> value
- now click on submit button.
+![alt text](image-12.png)
+
+![alt text](image-13.png)
+
++ always from the left column on incon "arrow up", click on buckets label and select buckt create before (mybucket)
+
+![alt text](image-14.png)
+
+![alt text](image-15.png)
+
+Now, a data exploration interface is presented. Here we will be guided through the query construction.
+
+From left to right you can select parameter for query
+in my case: 
++ from:		chirpstack
++ filter:	device_name		-> and select device name create on LoRaWan console
++ filter:	_measurement	-> device_frmpayload_data_bytes_air_temp_c - the name defined by Matthias code (for air temp)
++ filter:	_field			  -> value
+
+now click on submit button.
+
+![alt text](image-16.png)
+
  
- i suppose the you receive an error "unsupported input type for mean aggregate: string", if so, near "submit" button click on "script editor". now you switch to manual query writer and you can see the query code that you write with gui support.
- 
- from(bucket: "chirpstack")
-  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
-  |> filter(fn: (r) => r["device_name"] == "node_02")
-  |> filter(fn: (r) => r["_measurement"] == "device_frmpayload_data_bytes_air_temp_c")
-  |> filter(fn: (r) => r["_field"] == "value")
-  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
-  |> yield(name: "mean")
+I suppose the you receive an error "unsupported input type for mean aggregate: string", if so, near "submit" button click on "script editor". now you switch to manual query writer and you can see the query code that you write.<br>
+The issue is caused because by data type, is string insteat of float.
+
+![alt text](image-17.png)
+
+To be able to represent date in "graph" visualization type, you need to cast data from string to float, so add "|> toFloat()" as show below and than click on "submin" button.
   
-  to be able to represent date in "graph" visualization type, you need to cast data from string to float, so add "|> toFloat()" as show below and than click on "submin" button
-  
- from(bucket: "chirpstack")
-   |> range(start: v.timeRangeStart, stop: v.timeRangeStop)
-   |> filter(fn: (r) => r["device_name"] == "node_02")
-   |> filter(fn: (r) => r["_measurement"] == "device_frmpayload_data_bytes_air_temp_c")
-   |> filter(fn: (r) => r["_field"] == "value")
-   |> toFloat()
-   |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)
-   |> yield(name: "mean")
+![alt text](image-18.png)
 
-this is the first simple query that i have write.
+This is the first simple query that i have write.
 
-from gui you can select the time frame you want and also decide to save you query and visualization in a dashboard.
-if you don't have any dashboard, you can create one at the moment.
+If you want, you save your query and visualization (graph) in a dashboard. If you don't have any dashboard, you can create one on the fly.<br>
+On the same dashboard you can add all visualization/query that you want.<br>
 
-at the same dashboard you can add all visualization/query that you want
+From dashboard, you can select the time frame that you need to analyze.
+
+![alt text](image-19.png)
 
 
-
-[def]: #exploring-data-inside-influxdb
