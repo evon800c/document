@@ -38,19 +38,19 @@ In the images below you can see how do this.
 
 create organization and bucker
 
-![alt text](image-01.png)
+![alt text](images/image-01.png)
 
-![alt text](image-02.png)
+![alt text](images/image-02.png)
 
 create api token
 
-![alt text](image-03.png)
+![alt text](images/image-03.png)
 
-![alt text](image-04.png)
+![alt text](images/image-04.png)
 
-![alt text](image-05.png)
+![alt text](images/image-05.png)
 
-![alt text](image-06.png)
+![alt text](images/image-06.png)
 
 Now, we have all elements and parameters, including the URL to access the management API, needed for next step.
 
@@ -62,7 +62,7 @@ For integrating ChirpStack and InfluxDB we need to:
 
 create an application
 
-![alt text](image-07.png)
+![alt text](images/image-07.png)
 
 create a connection to application server (InfluxDB in our case), using a small number of simple paramenter, as:
 - InfluxDB version 
@@ -71,11 +71,11 @@ create a connection to application server (InfluxDB in our case), using a small 
 - Bucket       (defined on InfluxDB side) -> my case "ChirpStack"
 - Token        (defined on InfluxDB side)
 
-![alt text](image-08.png)
+![alt text](images/image-08.png)
 
-![alt text](image-09.png)
+![alt text](images/image-09.png)
 
-![alt text](image-10.png)
+![alt text](images/image-10.png)
 
 At this point ChirpStack write data coming from device into InfluxDB.
 
@@ -86,15 +86,15 @@ At this point, my first challenge was understanding how to explore data in Influ
 
 From the left column, switch to organization created before
 
-![alt text](image-12.png)
+![alt text](images/image-12.png)
 
-![alt text](image-13.png)
+![alt text](images/image-13.png)
 
 Always from the left column on incon "arrow up", click on buckets label and select buckt create before (mybucket)
 
-![alt text](image-14.png)
+![alt text](images/image-14.png)
 
-![alt text](image-15.png)
+![alt text](images/image-15.png)
 
 Now, a data exploration interface is presented. Here we will be guided through the query construction.
 
@@ -106,16 +106,16 @@ From left to right you can select parameter for query, in my case:
 
 Now click on submit button.
 
-![alt text](image-16.png)
+![alt text](images/image-16.png)
 
 I suppose the you receive an error "unsupported input type for mean aggregate: string", if so, near "submit" button click on "script editor". now you switch to manual query writer and you can see the query code that you write.<br>
 The issue is caused because by data type, is string insteat of float.
 
-![alt text](image-17.png)
+![alt text](images/image-17.png)
 
 To be able to represent date in "graph" visualization type, you need to cast data from string to float, so add "|> toFloat()" as show below and than click on "submin" button.
 
-![alt text](image-18.png)
+![alt text](images/image-18.png)
 
 This is the first simple query that i have write.
 
@@ -124,4 +124,4 @@ On the same dashboard you can add all visualization/query that you want.<br>
 
 From dashboard, you can select the time frame that you need to analyze.
 
-![alt text](image-19.png)
+![alt text](images/image-19.png)
