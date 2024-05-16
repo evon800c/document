@@ -1,5 +1,5 @@
 ## introduction
-a
+
 I don’t know if my experience with LoRaWan and my personal use of BresserWeatherSensorLW project can interesting someone, but I am happy to share what I have realized for my experiment.
 
 I'm completely new on LoRa an LoRaWan and on all other components that I have decided to use. My approch is very basic and i think that my description is not usefull for advance users. I think instead that could be usefull for users that now are starting the trip on this world.
