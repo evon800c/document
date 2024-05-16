@@ -4,7 +4,10 @@ I don’t know if my experience with LoRaWan and my personal use of BresserWeath
 
 I'm completely new on LoRa an LoRaWan and on all other components that I have decided to use. My approch is very basic and i think that my description is not usefull for advance users. I think instead that could be usefull for users that now are starting the trip on this world.
 
-When we start talking about LoRaWan, we should also talk about its fundamental elements.
+When we start talking about LoRaWan, we should also talk about its fundamental elements.<br>
+Some note from https://www.thethingsnetwork.org/docs/lorawan/architecture/
+
+![alt text](images/image-00.png)
 
 - network server
 - gateway
